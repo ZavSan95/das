@@ -1,4 +1,7 @@
-﻿namespace Tienda.Views
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace Tienda.Views
 {
     partial class Home
     {
@@ -114,6 +117,16 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            menuStrip1.BackColor = Color.White; // Fondo blanco para coincidir con el estilo Metro
+            menuStrip1.ForeColor = Color.Black; // Texto negro
+
+            foreach (ToolStripMenuItem item in menuStrip1.Items)
+            {
+                item.BackColor = Color.White;   // Fondo de los ítems
+                item.ForeColor = Color.Black;  // Texto
+                item.Font = new Font("Segoe UI", 10, FontStyle.Regular); // Fuente Metro
+            }
+
         }
 
         #endregion
@@ -125,5 +138,7 @@
         private System.Windows.Forms.ToolStripMenuItem nuevaVentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informeVentasToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
+
+
     }
 }

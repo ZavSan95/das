@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 using WinFormsApp.Controllers;
@@ -7,7 +8,7 @@ using WinFormsApp.Models;
 
 namespace Tienda.Views
 {
-    public partial class FormProductos : Form
+    public partial class FormProductos : MetroForm
     {
         private CategoriaController categoriaController = new CategoriaController();
         private ProveedorController proveedorController = new ProveedorController();

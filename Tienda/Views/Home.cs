@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Windows.Forms;
 using WinFormsApp.Models;
 
 namespace Tienda.Views
 {
-    public partial class Home : Form
+    public partial class Home : MetroForm
     {
         public Home()
         {
@@ -21,6 +22,24 @@ namespace Tienda.Views
         {
             FormProductos formProductos = new FormProductos();
             formProductos.ShowDialog();
+        }
+
+        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormClientes formClientes = new FormClientes();
+            formClientes.ShowDialog();
+        }
+
+        private void nuevaVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormVenta formVenta = new FormVenta();
+            formVenta.ShowDialog();
+        }
+
+        private void informeVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormFacturas formInforme = new FormFacturas();
+            formInforme.ShowDialog();
         }
     }
 }

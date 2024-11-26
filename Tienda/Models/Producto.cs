@@ -22,7 +22,14 @@ namespace WinFormsApp.Models
         // Clave foránea
         public int? ProveedorCodigo { get; set; }
         public virtual Proveedor Proveedor { get; set; }
+
+        // Sobrescribir ToString() para mostrar el código del producto
+        public override string ToString()
+        {
+            return Codigo.ToString(); // O cualquier otra propiedad que desees mostrar
+        }
     }
+
 
     // Clase adicional para los datos del DataGridView
     public class ProductoViewModel

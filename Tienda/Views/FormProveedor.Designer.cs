@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtContacto = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dgvProveedores = new System.Windows.Forms.DataGridView();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
+            this.label1 = new MetroFramework.Controls.MetroLabel();
+            this.txtNombre = new MetroFramework.Controls.MetroTextBox();
+            this.txtDireccion = new MetroFramework.Controls.MetroTextBox();
+            this.label2 = new MetroFramework.Controls.MetroLabel();
+            this.txtContacto = new MetroFramework.Controls.MetroTextBox();
+            this.label3 = new MetroFramework.Controls.MetroLabel();
+            this.dgvProveedores = new MetroFramework.Controls.MetroGrid();
+            this.btnAgregar = new MetroFramework.Controls.MetroButton();
+            this.btnEditar = new MetroFramework.Controls.MetroButton();
+            this.btnEliminar = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 27);
+            this.label1.Location = new System.Drawing.Point(29, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 0;
@@ -52,14 +52,14 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(97, 24);
+            this.txtNombre.Location = new System.Drawing.Point(98, 80);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 1;
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(296, 24);
+            this.txtDireccion.Location = new System.Drawing.Point(297, 80);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(100, 20);
             this.txtDireccion.TabIndex = 3;
@@ -67,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(227, 27);
+            this.label2.Location = new System.Drawing.Point(228, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 2;
@@ -75,7 +75,7 @@
             // 
             // txtContacto
             // 
-            this.txtContacto.Location = new System.Drawing.Point(507, 24);
+            this.txtContacto.Location = new System.Drawing.Point(508, 80);
             this.txtContacto.Name = "txtContacto";
             this.txtContacto.Size = new System.Drawing.Size(100, 20);
             this.txtContacto.TabIndex = 5;
@@ -83,7 +83,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(438, 27);
+            this.label3.Location = new System.Drawing.Point(439, 83);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 4;
@@ -92,7 +92,7 @@
             // dgvProveedores
             // 
             this.dgvProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProveedores.Location = new System.Drawing.Point(31, 146);
+            this.dgvProveedores.Location = new System.Drawing.Point(36, 202);
             this.dgvProveedores.MultiSelect = false;
             this.dgvProveedores.Name = "dgvProveedores";
             this.dgvProveedores.ReadOnly = true;
@@ -103,39 +103,39 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(67, 82);
+            this.btnAgregar.Location = new System.Drawing.Point(68, 138);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 7;
             this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            //this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(204, 82);
+            this.btnEditar.Location = new System.Drawing.Point(205, 138);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 8;
             this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
+            //this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click_1);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(346, 82);
+            this.btnEliminar.Location = new System.Drawing.Point(347, 138);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 9;
             this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            //this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
             // 
             // Proveedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(685, 450);
+            this.ClientSize = new System.Drawing.Size(667, 491);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAgregar);
@@ -147,7 +147,7 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label1);
             this.Name = "Proveedores";
-            this.Text = "FormProveedor";
+            this.Text = "Proveedores";
             this.Load += new System.EventHandler(this.FormProveedor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).EndInit();
             this.ResumeLayout(false);
@@ -157,15 +157,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtDireccion;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtContacto;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dgvProveedores;
-        private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnEliminar;
+        private MetroFramework.Controls.MetroLabel label1;
+        private MetroFramework.Controls.MetroTextBox txtNombre;
+        private MetroFramework.Controls.MetroTextBox txtDireccion;
+        private MetroFramework.Controls.MetroLabel label2;
+        private MetroFramework.Controls.MetroTextBox txtContacto;
+        private MetroFramework.Controls.MetroLabel label3;
+        private MetroFramework.Controls.MetroGrid dgvProveedores;
+        private MetroFramework.Controls.MetroButton btnAgregar;
+        private MetroFramework.Controls.MetroButton btnEditar;
+        private MetroFramework.Controls.MetroButton btnEliminar;
     }
 }

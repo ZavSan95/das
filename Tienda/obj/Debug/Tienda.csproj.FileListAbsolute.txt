@@ -19,3 +19,14 @@ C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Migrations.AddCategoriaF
 C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Views.FormProductos.resources
 C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Migrations.Relations.resources
 C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Migrations.NullColumnsProducts.resources
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Views.FormClientes.resources
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Migrations.Clientes.resources
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Migrations.ModifyContext.resources
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Migrations.FacturayDetalles.resources
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Views.FormVenta.resources
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Migrations.ModDetalles.resources
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Views.FormFacturas.resources
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Migrations.ForeignKeyClientInFactura.resources
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\bin\Debug\MetroFramework.Design.dll
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\bin\Debug\MetroFramework.dll
+C:\Users\USUARIO\Desktop\TP DAS\Tienda\bin\Debug\MetroFramework.Fonts.dll

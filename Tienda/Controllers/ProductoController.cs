@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using WinFormsApp.Models;
@@ -91,6 +92,17 @@ namespace WinFormsApp.Controllers
                     proveedor != null ? proveedor.Nombre : "Sin proveedor"   // Mostrar el nombre del proveedor
                 );
             }
+        }
+
+        public List<Producto> ObtenerProductos()
+        {
+            // Obtener todos los productos que tienen stock disponible
+            return _context.Productos.ToList();
+        }
+
+        public Producto ObtenerProductoPorCodigo(int codigo)
+        {
+            return _context.Productos.FirstOrDefault(p => p.Codigo == codigo);
         }
     }
 }

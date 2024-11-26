@@ -42,6 +42,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -57,8 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
+    <Compile Include="Controllers\InformeController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\VentaController.cs" />
     <Compile Include="Migrations\202411251306133_InitialCreate.cs" />
     <Compile Include="Migrations\202411251306133_InitialCreate.designer.cs">
       <DependentUpon>202411251306133_InitialCreate.cs</DependentUpon>
@@ -75,13 +88,48 @@
     <Compile Include="Migrations\202411251511020_NullColumnsProducts.designer.cs">
       <DependentUpon>202411251511020_NullColumnsProducts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411260943054_Clientes.cs" />
+    <Compile Include="Migrations\202411260943054_Clientes.designer.cs">
+      <DependentUpon>202411260943054_Clientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411260956148_ModifyContext.cs" />
+    <Compile Include="Migrations\202411260956148_ModifyContext.designer.cs">
+      <DependentUpon>202411260956148_ModifyContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411261023313_FacturayDetalles.cs" />
+    <Compile Include="Migrations\202411261023313_FacturayDetalles.designer.cs">
+      <DependentUpon>202411261023313_FacturayDetalles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411261125150_ModDetalles.cs" />
+    <Compile Include="Migrations\202411261125150_ModDetalles.designer.cs">
+      <DependentUpon>202411261125150_ModDetalles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411261323076_ForeignKeyClientInFactura.cs" />
+    <Compile Include="Migrations\202411261323076_ForeignKeyClientInFactura.designer.cs">
+      <DependentUpon>202411261323076_ForeignKeyClientInFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\DetalleFactura.cs" />
+    <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\FormClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormClientes.Designer.cs">
+      <DependentUpon>FormClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormFacturas.Designer.cs">
+      <DependentUpon>FormFacturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\FormProductos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +141,12 @@
     </Compile>
     <Compile Include="Views\FormProveedor.Designer.cs">
       <DependentUpon>FormProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormVenta.Designer.cs">
+      <DependentUpon>FormVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.cs">
       <SubType>Form</SubType>
@@ -112,6 +166,21 @@
     <EmbeddedResource Include="Migrations\202411251511020_NullColumnsProducts.resx">
       <DependentUpon>202411251511020_NullColumnsProducts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411260943054_Clientes.resx">
+      <DependentUpon>202411260943054_Clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411260956148_ModifyContext.resx">
+      <DependentUpon>202411260956148_ModifyContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411261023313_FacturayDetalles.resx">
+      <DependentUpon>202411261023313_FacturayDetalles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411261125150_ModDetalles.resx">
+      <DependentUpon>202411261125150_ModDetalles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411261323076_ForeignKeyClientInFactura.resx">
+      <DependentUpon>202411261323076_ForeignKeyClientInFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -120,12 +189,22 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\FormClientes.resx">
+      <DependentUpon>FormClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormFacturas.resx">
+      <DependentUpon>FormFacturas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormProductos.resx">
       <DependentUpon>FormProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormProveedor.resx">
       <DependentUpon>FormProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormVenta.resx">
+      <DependentUpon>FormVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
@@ -144,7 +223,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="MetroFramework.txt" />
+    <None Include="Resources\tienda.jpg" />
+    <None Include="Resources\tienda.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

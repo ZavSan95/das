@@ -22,34 +22,6 @@ namespace Tienda.Views
 
         }
 
-        // Método para cargar los datos al DataGridView
-        private void CargarDatos()
-        {
-            try
-            {
-                // Obtener la lista de clientes a través del Singleton
-                var clientes = ClienteController.Instance.ObtenerClientes().ToList();
-
-                // Verificar si la lista está vacía
-                if (clientes.Count == 0)
-                {
-                    // Limpiar el DataGridView si no hay datos
-                    dgvClientes.DataSource = null;
-
-                    // Opcional: Mostrar un mensaje al usuario
-                    MessageBox.Show("No se encontraron clientes para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    // Asignar la lista local al DataGridView si hay datos
-                    dgvClientes.DataSource = clientes;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ocurrió un error al cargar los datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -70,31 +42,6 @@ namespace Tienda.Views
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al agregar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Asegurarse de que no se haya hecho clic en una celda vacía
-            if (e.RowIndex >= 0)
-            {
-                try
-                {
-                    // Obtener el cliente de la fila seleccionada
-                    var clienteSeleccionado = dgvClientes.Rows[e.RowIndex].DataBoundItem as Cliente;
-
-                    if (clienteSeleccionado != null)
-                    {
-                        // Rellenar los campos de texto con la información del cliente seleccionado
-                        txtNombre.Text = clienteSeleccionado.Nombre;
-                        txtDireccion.Text = clienteSeleccionado.Direccion;
-                        txtContacto.Text = clienteSeleccionado.Contacto;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ocurrió un error al seleccionar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 
@@ -133,6 +80,63 @@ namespace Tienda.Views
             }
         }
 
+
+        #region AUXILIARES
+
+        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Asegurarse de que no se haya hecho clic en una celda vacía
+            if (e.RowIndex >= 0)
+            {
+                try
+                {
+                    // Obtener el cliente de la fila seleccionada
+                    var clienteSeleccionado = dgvClientes.Rows[e.RowIndex].DataBoundItem as Cliente;
+
+                    if (clienteSeleccionado != null)
+                    {
+                        // Rellenar los campos de texto con la información del cliente seleccionado
+                        txtNombre.Text = clienteSeleccionado.Nombre;
+                        txtDireccion.Text = clienteSeleccionado.Direccion;
+                        txtContacto.Text = clienteSeleccionado.Contacto;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocurrió un error al seleccionar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // Método para cargar los datos al DataGridView
+        private void CargarDatos()
+        {
+            try
+            {
+                // Obtener la lista de clientes a través del Singleton
+                var clientes = ClienteController.Instance.ObtenerClientes().ToList();
+
+                // Verificar si la lista está vacía
+                if (clientes.Count == 0)
+                {
+                    // Limpiar el DataGridView si no hay datos
+                    dgvClientes.DataSource = null;
+
+                    // Opcional: Mostrar un mensaje al usuario
+                    MessageBox.Show("No se encontraron clientes para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    // Asignar la lista local al DataGridView si hay datos
+                    dgvClientes.DataSource = clientes;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al cargar los datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void LimpiarCampos()
         {
             txtNombre.Text = string.Empty;
@@ -156,6 +160,8 @@ namespace Tienda.Views
             dgvClientes.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.LightBlue; // Color de fondo al seleccionar una celda
             dgvClientes.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;  // Color del texto al seleccionar una celda
         }
+
+        #endregion
     }
 }
 

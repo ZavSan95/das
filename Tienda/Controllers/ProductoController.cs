@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using WinFormsApp.Models;
@@ -17,48 +16,22 @@ namespace WinFormsApp.Controllers
 
         public void AgregarProducto(Producto producto)
         {
-            _context.Productos.Add(producto);
-            _context.SaveChanges();
+            Producto.Agregar(producto, _context);
         }
 
         public void EditarProducto(int codigoProducto, Producto productoNuevo)
         {
-            var productoExistente = _context.Productos.FirstOrDefault(p => p.Codigo == codigoProducto);
-            if (productoExistente != null)
-            {
-                // Actualizamos los valores del producto existente con los nuevos valores
-                productoExistente.Nombre = productoNuevo.Nombre;
-                productoExistente.Descripcion = productoNuevo.Descripcion;
-                productoExistente.Precio = productoNuevo.Precio;
-                productoExistente.Stock = productoNuevo.Stock;
-
-                // Si se permite la relación de claves foráneas nulas, se puede manejar de esta forma
-                productoExistente.CategoriaCodigo = productoNuevo.CategoriaCodigo;
-                productoExistente.ProveedorCodigo = productoNuevo.ProveedorCodigo;
-
-                // Guardamos los cambios en la base de datos
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new Exception("El producto no fue encontrado en la base de datos.");
-            }
+            Producto.Editar(codigoProducto, productoNuevo, _context);
         }
-
 
         public void EliminarProducto(int codigo)
         {
-            var producto = _context.Productos.FirstOrDefault(p => p.Codigo == codigo);
-            if (producto != null)
-            {
-                _context.Productos.Remove(producto);
-                _context.SaveChanges();
-            }
+            Producto.Eliminar(codigo, _context);
         }
 
-        public IQueryable<Producto> ObtenerProductosPorProveedor(int proveedorCodigo)
+        public List<Producto> ObtenerProductos()
         {
-            return _context.Productos.Where(p => p.ProveedorCodigo == proveedorCodigo);
+            return Producto.ObtenerTodos(_context);
         }
 
         // Método para cargar los productos en el DataGridView
@@ -92,12 +65,6 @@ namespace WinFormsApp.Controllers
                     proveedor != null ? proveedor.Nombre : "Sin proveedor"   // Mostrar el nombre del proveedor
                 );
             }
-        }
-
-        public List<Producto> ObtenerProductos()
-        {
-            // Obtener todos los productos que tienen stock disponible
-            return _context.Productos.ToList();
         }
 
         public Producto ObtenerProductoPorCodigo(int codigo)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace WinFormsApp.Models
 {
@@ -19,5 +20,45 @@ namespace WinFormsApp.Models
         {
             Productos = new HashSet<Producto>();
         }
+
+        // Métodos CRUD en el modelo
+        public static void Agregar(AppDbContext context, Proveedor proveedor)
+        {
+            context.Proveedores.Add(proveedor);
+            context.SaveChanges();
+        }
+
+        public static void Editar(AppDbContext context, Proveedor proveedor)
+        {
+            var proveedorExistente = context.Proveedores.FirstOrDefault(p => p.Codigo == proveedor.Codigo);
+            if (proveedorExistente != null)
+            {
+                proveedorExistente.Nombre = proveedor.Nombre;
+                proveedorExistente.Direccion = proveedor.Direccion;
+                proveedorExistente.Contacto = proveedor.Contacto;
+                context.SaveChanges();
+            }
+        }
+
+        public static void Eliminar(AppDbContext context, int codigo)
+        {
+            var proveedor = context.Proveedores.FirstOrDefault(p => p.Codigo == codigo);
+            if (proveedor != null)
+            {
+                context.Proveedores.Remove(proveedor);
+                context.SaveChanges();
+            }
+        }
+
+        public static IQueryable<Proveedor> ObtenerProveedores(AppDbContext context)
+        {
+            return context.Proveedores.Include("Productos");
+        }
+
+        public static Proveedor ObtenerProveedor(AppDbContext context, int codigo)
+        {
+            return context.Proveedores.FirstOrDefault(p => p.Codigo == codigo);
+        }
+
     }
 }

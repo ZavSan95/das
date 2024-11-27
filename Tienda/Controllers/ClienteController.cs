@@ -1,25 +1,20 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using WinFormsApp.Models;
 
 namespace WinFormsApp.Controllers
 {
     public class ClienteController
     {
-        // Instancia única de la clase
         private static ClienteController _instance;
-
-        // Objeto para manejar concurrencia en entornos multihilo
         private static readonly object _lock = new object();
-
         private readonly AppDbContext _context;
 
-        // Constructor privado para evitar instanciación directa
         private ClienteController()
         {
             _context = new AppDbContext();
         }
 
-        // Propiedad para obtener la única instancia de la clase
         public static ClienteController Instance
         {
             get
@@ -35,43 +30,50 @@ namespace WinFormsApp.Controllers
             }
         }
 
-        // Métodos de la clase
         public void AgregarCliente(Cliente cliente)
         {
-            _context.Clientes.Add(cliente);
-            _context.SaveChanges();
+            if (string.IsNullOrWhiteSpace(cliente.Nombre) || string.IsNullOrWhiteSpace(cliente.Direccion) || string.IsNullOrWhiteSpace(cliente.Contacto))
+            {
+                throw new ArgumentException("Todos los campos son obligatorios.");
+            }
+
+            Cliente.AgregarCliente(_context, cliente);
         }
 
         public void EditarCliente(Cliente cliente)
         {
-            var clienteExistente = _context.Clientes.FirstOrDefault(c => c.Codigo == cliente.Codigo);
-            if (clienteExistente != null)
+            if (cliente.Codigo <= 0 || string.IsNullOrWhiteSpace(cliente.Nombre) || string.IsNullOrWhiteSpace(cliente.Direccion) || string.IsNullOrWhiteSpace(cliente.Contacto))
             {
-                clienteExistente.Nombre = cliente.Nombre;
-                clienteExistente.Direccion = cliente.Direccion;
-                clienteExistente.Contacto = cliente.Contacto;
-                _context.SaveChanges();
+                throw new ArgumentException("Datos inválidos para la edición del cliente.");
             }
+
+            Cliente.EditarCliente(_context, cliente);
         }
 
         public void EliminarCliente(int codigo)
         {
-            var cliente = _context.Clientes.FirstOrDefault(c => c.Codigo == codigo);
-            if (cliente != null)
+            if (codigo <= 0)
             {
-                _context.Clientes.Remove(cliente);
-                _context.SaveChanges();
+                throw new ArgumentException("Código de cliente inválido.");
             }
+
+            Cliente.EliminarCliente(_context, codigo);
         }
 
         public IQueryable<Cliente> ObtenerClientes()
         {
-            return _context.Clientes;
+            return Cliente.ObtenerClientes(_context);
         }
 
         public Cliente ObtenerCliente(int codigo)
         {
-            return _context.Clientes.FirstOrDefault(c => c.Codigo == codigo);
+            if (codigo <= 0)
+            {
+                throw new ArgumentException("Código de cliente inválido.");
+            }
+
+            return Cliente.ObtenerCliente(_context, codigo);
         }
     }
 }
+

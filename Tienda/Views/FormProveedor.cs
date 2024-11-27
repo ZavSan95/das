@@ -17,50 +17,108 @@ namespace Tienda.Views
             _proveedorController = new ProveedorController();
         }
 
-        // Cargar los datos de los proveedores en el DataGridView
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var proveedorNuevo = new Proveedor
+                {
+                    Nombre = txtNombre.Text,
+                    Direccion = txtDireccion.Text,
+                    Contacto = txtContacto.Text
+                };
+
+                _proveedorController.AgregarProveedor(proveedorNuevo);
+                CargarDatos(); // Recargar los datos del DataGridView después de agregar
+                LimpiarCampos();
+            }
+            catch (ArgumentException ex) // Capturamos ArgumentException en lugar de InvalidOperationException
+            {
+                // Mostrar el mensaje de error en un MessageBox
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void btnEditar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvProveedores.SelectedRows.Count > 0)
+                {
+                    var proveedorSeleccionado = (Proveedor)dgvProveedores.SelectedRows[0].DataBoundItem;
+
+                    proveedorSeleccionado.Nombre = txtNombre.Text;
+                    proveedorSeleccionado.Direccion = txtDireccion.Text;
+                    proveedorSeleccionado.Contacto = txtContacto.Text;
+
+                    _proveedorController.EditarProveedor(proveedorSeleccionado);
+                    CargarDatos(); // Recargar los datos después de editar
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show("Selecciona un proveedor para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (ArgumentException ex) // Capturar ArgumentException
+            {
+                // Mostrar el mensaje de error en un MessageBox
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvProveedores.SelectedRows.Count > 0)
+                {
+                    var proveedorSeleccionado = (Proveedor)dgvProveedores.SelectedRows[0].DataBoundItem;
+                    _proveedorController.EliminarProveedor(proveedorSeleccionado.Codigo);
+                    CargarDatos(); // Recargar los datos después de eliminar
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show("Selecciona un proveedor para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (ArgumentException ex) // Capturar ArgumentException
+            {
+                // Mostrar el mensaje de error en un MessageBox
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        #region AUXILIARES
+
         private void FormProveedor_Load(object sender, EventArgs e)
         {
             CargarDatos();
         }
 
-        // Método para cargar los datos al DataGridView
         private void CargarDatos()
         {
-            using (var context = new AppDbContext())
-            {
-                // Obtener la lista de proveedores y convertirla a una lista en memoria
-                var proveedores = _proveedorController.ObtenerProveedores().ToList();
+            var proveedores = _proveedorController.ObtenerProveedores().ToList();
+            dgvProveedores.DataSource = proveedores;
 
-                // Asignar la lista local al DataGridView
-                dgvProveedores.DataSource = proveedores;
+            // Ocultar la columna "Productos" en el DataGridView
+            if (dgvProveedores.Columns.Contains("Productos"))
+            {
+                dgvProveedores.Columns["Productos"].Visible = false;
             }
-        }
-
-        // Manejo del botón Agregar proveedor
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            var proveedorNuevo = new Proveedor
-            {
-                Nombre = txtNombre.Text,
-                Direccion = txtDireccion.Text,
-                Contacto = txtContacto.Text
-            };
-
-            _proveedorController.AgregarProveedor(proveedorNuevo);
-            CargarDatos(); // Recargar los datos del DataGridView después de agregar
         }
 
         private void dgvProveedores_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Asegurarse de que no se haya hecho clic en una celda vacía
             if (e.RowIndex >= 0)
             {
-                // Obtener el proveedor de la fila seleccionada
                 var proveedorSeleccionado = dgvProveedores.Rows[e.RowIndex].DataBoundItem as Proveedor;
-
                 if (proveedorSeleccionado != null)
                 {
-                    // Rellenar los campos de texto con la información del proveedor seleccionado
                     txtNombre.Text = proveedorSeleccionado.Nombre;
                     txtDireccion.Text = proveedorSeleccionado.Direccion;
                     txtContacto.Text = proveedorSeleccionado.Contacto;
@@ -68,37 +126,13 @@ namespace Tienda.Views
             }
         }
 
-        private void btnEditar_Click_1(object sender, EventArgs e)
+        private void LimpiarCampos()
         {
-            if (dgvProveedores.SelectedRows.Count > 0)
-            {
-                var proveedorSeleccionado = (Proveedor)dgvProveedores.SelectedRows[0].DataBoundItem;
-
-                proveedorSeleccionado.Nombre = txtNombre.Text;
-                proveedorSeleccionado.Direccion = txtDireccion.Text;
-                proveedorSeleccionado.Contacto = txtContacto.Text;
-
-                _proveedorController.EditarProveedor(proveedorSeleccionado);
-                CargarDatos(); // Recargar los datos después de editar
-            }
-            else
-            {
-                MessageBox.Show("Selecciona un proveedor para editar.");
-            }
+            txtNombre.Text = string.Empty;
+            txtContacto.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
         }
 
-        private void btnEliminar_Click_1(object sender, EventArgs e)
-        {
-            if (dgvProveedores.SelectedRows.Count > 0)
-            {
-                var proveedorSeleccionado = (Proveedor)dgvProveedores.SelectedRows[0].DataBoundItem;
-                _proveedorController.EliminarProveedor(proveedorSeleccionado.Codigo);
-                CargarDatos(); // Recargar los datos después de eliminar
-            }
-            else
-            {
-                MessageBox.Show("Selecciona un proveedor para eliminar.");
-            }
-        }
+        #endregion
     }
 }

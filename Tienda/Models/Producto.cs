@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace WinFormsApp.Models
 {
@@ -7,42 +9,59 @@ namespace WinFormsApp.Models
     {
         [Key]
         public int Codigo { get; set; }
-
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
-
-        // Clave foránea a la categoría
         public int? CategoriaCodigo { get; set; }
-
-        // Relación con la tabla Categoria
-        public virtual Categoria Categoria { get; set; }  // Propiedad de navegación
-
-        // Clave foránea
+        public virtual Categoria Categoria { get; set; }
         public int? ProveedorCodigo { get; set; }
         public virtual Proveedor Proveedor { get; set; }
 
-        // Sobrescribir ToString() para mostrar el código del producto
-        public override string ToString()
+        // Métodos para operaciones CRUD
+        public static void Agregar(Producto producto, AppDbContext context)
         {
-            return Codigo.ToString(); // O cualquier otra propiedad que desees mostrar
+            context.Productos.Add(producto);
+            context.SaveChanges();
+        }
+
+        public static void Editar(int codigoProducto, Producto productoNuevo, AppDbContext context)
+        {
+            var productoExistente = context.Productos.FirstOrDefault(p => p.Codigo == codigoProducto);
+            if (productoExistente != null)
+            {
+                productoExistente.Nombre = productoNuevo.Nombre;
+                productoExistente.Descripcion = productoNuevo.Descripcion;
+                productoExistente.Precio = productoNuevo.Precio;
+                productoExistente.Stock = productoNuevo.Stock;
+                productoExistente.CategoriaCodigo = productoNuevo.CategoriaCodigo;
+                productoExistente.ProveedorCodigo = productoNuevo.ProveedorCodigo;
+
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("El producto no fue encontrado en la base de datos.");
+            }
+        }
+
+        public static void Eliminar(int codigo, AppDbContext context)
+        {
+            var producto = context.Productos.FirstOrDefault(p => p.Codigo == codigo);
+            if (producto != null)
+            {
+                context.Productos.Remove(producto);
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("El producto no fue encontrado en la base de datos.");
+            }
+        }
+
+        public static List<Producto> ObtenerTodos(AppDbContext context)
+        {
+            return context.Productos.ToList();
         }
     }
-
-
-    // Clase adicional para los datos del DataGridView
-    public class ProductoViewModel
-    {
-        public int Codigo { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public decimal Precio { get; set; }
-        public int Stock { get; set; }
-        public string CategoriaNombre { get; set; } // Para mostrar el nombre de la categoría
-        public int CategoriaCodigo { get; set; } // Código de la categoría
-        public string ProveedorNombre { get; set; } // Para mostrar el nombre del proveedor
-        public int ProveedorCodigo { get; set; } // Código del proveedor
-    }
-
 }

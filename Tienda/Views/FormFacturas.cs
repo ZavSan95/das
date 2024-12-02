@@ -37,18 +37,42 @@ namespace Tienda.Views
 
         private void dgvFacturas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            try
             {
-                // Obtener el número de factura seleccionado
-                int numeroFactura = (int)dgvFacturas.Rows[e.RowIndex].Cells["Numero"].Value;
+                if (e.RowIndex >= 0)
+                {
+                    // Validar que la celda seleccionada no sea nula
+                    if (dgvFacturas.Rows[e.RowIndex].Cells["Numero"].Value != null)
+                    {
+                        // Obtener el número de factura seleccionado
+                        int numeroFactura = (int)dgvFacturas.Rows[e.RowIndex].Cells["Numero"].Value;
 
-                // Llamar al controlador para obtener los detalles de la factura
-                var detalles = _facturaController.ObtenerDetallesFactura(numeroFactura);
+                        // Llamar al controlador para obtener los detalles de la factura
+                        var detalles = _facturaController.ObtenerDetallesFactura(numeroFactura);
 
-                // Mostrar los detalles de la factura
-                MostrarDetallesFactura(detalles);
+                        // Mostrar los detalles de la factura
+                        MostrarDetallesFactura(detalles);
+                    }
+                    else
+                    {
+                        MessageBox.Show("La fila seleccionada no contiene datos válidos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (InvalidCastException ex)
+            {
+                MessageBox.Show("Ocurrió un error al procesar la selección. Verifique que la fila contiene datos válidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Puedes registrar el error en un log si es necesario
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error inesperado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // También puedes registrar el error en un log
+                Console.WriteLine(ex.Message);
             }
         }
+
 
 
         private void btnBuscar_Click(object sender, EventArgs e)

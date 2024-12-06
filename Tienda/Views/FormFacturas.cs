@@ -85,6 +85,7 @@ namespace Tienda.Views
 
             // Limpiar el DataGridView antes de cargar los resultados
             dgvFacturas.Rows.Clear();
+            dgvDetallesFacturas.Rows.Clear();
 
             // Cargar las facturas en el DataGridView
             foreach (var factura in facturas)
@@ -108,6 +109,7 @@ namespace Tienda.Views
             cmbClientes.SelectedIndex = -1;
             CargarFacturas();
             dgvDetallesFacturas.Rows.Clear();
+            dgvFacturas.Rows.Clear();
         }
 
         #region AUXILIARES

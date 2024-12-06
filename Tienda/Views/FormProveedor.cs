@@ -31,11 +31,14 @@ namespace Tienda.Views
                 _proveedorController.AgregarProveedor(proveedorNuevo);
                 CargarDatos(); // Recargar los datos del DataGridView después de agregar
                 LimpiarCampos();
+                MessageBox.Show("Proveedor creado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch (ArgumentException ex) // Capturamos ArgumentException en lugar de InvalidOperationException
             {
                 // Mostrar el mensaje de error en un MessageBox
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimpiarCampos();    
             }
         }
 
@@ -55,16 +58,19 @@ namespace Tienda.Views
                     _proveedorController.EditarProveedor(proveedorSeleccionado);
                     CargarDatos(); // Recargar los datos después de editar
                     LimpiarCampos();
+                    MessageBox.Show("Proveedor editado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     MessageBox.Show("Selecciona un proveedor para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    LimpiarCampos();
                 }
             }
             catch (ArgumentException ex) // Capturar ArgumentException
             {
                 // Mostrar el mensaje de error en un MessageBox
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimpiarCampos();
             }
         }
 
@@ -88,6 +94,7 @@ namespace Tienda.Views
             {
                 // Mostrar el mensaje de error en un MessageBox
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimpiarCampos();
             }
         }
 

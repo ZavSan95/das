@@ -30,3 +30,35 @@ C:\Users\USUARIO\Desktop\TP DAS\Tienda\obj\Debug\Tienda.Migrations.ForeignKeyCli
 C:\Users\USUARIO\Desktop\TP DAS\Tienda\bin\Debug\MetroFramework.Design.dll
 C:\Users\USUARIO\Desktop\TP DAS\Tienda\bin\Debug\MetroFramework.dll
 C:\Users\USUARIO\Desktop\TP DAS\Tienda\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\Tienda.exe.config
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\Tienda.exe
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\Tienda.pdb
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\EntityFramework.dll
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\MetroFramework.Design.dll
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\MetroFramework.dll
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\EntityFramework.xml
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.csproj.AssemblyReference.cache
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Migrations.InitialCreate.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Migrations.AddCategoriaForeignKeyToProducto.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Migrations.Relations.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Migrations.NullColumnsProducts.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Migrations.Clientes.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Migrations.ModifyContext.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Migrations.FacturayDetalles.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Migrations.ModDetalles.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Migrations.ForeignKeyClientInFactura.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Properties.Resources.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Views.FormClientes.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Views.FormFacturas.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Views.FormProductos.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Views.Proveedores.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Views.FormVenta.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.Views.Home.resources
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.csproj.GenerateResource.cache
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.csproj.CoreCompileInputs.cache
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.csproj.Up2Date
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.exe
+C:\Users\zavat\OneDrive\Documentos\das\Tienda\obj\Debug\Tienda.pdb

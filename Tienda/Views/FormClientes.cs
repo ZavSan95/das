@@ -27,6 +27,13 @@ namespace Tienda.Views
         {
             try
             {
+                // Validar campos vacíos
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtDireccion.Text) || string.IsNullOrWhiteSpace(txtContacto.Text))
+                {
+                    MessageBox.Show("Todos los campos son obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var clienteNuevo = new Cliente
                 {
                     Nombre = txtNombre.Text,
@@ -36,8 +43,10 @@ namespace Tienda.Views
 
                 // Agregar el cliente utilizando la instancia Singleton
                 ClienteController.Instance.AgregarCliente(clienteNuevo);
-                CargarDatos();
+                CargarDatos(); // Recargar los datos después de agregar
                 LimpiarCampos();
+
+                MessageBox.Show("Cliente agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -45,40 +54,75 @@ namespace Tienda.Views
             }
         }
 
+
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count > 0)
             {
                 var clienteSeleccionado = (Cliente)dgvClientes.SelectedRows[0].DataBoundItem;
 
+                // Validar campos vacíos antes de editar
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtDireccion.Text) || string.IsNullOrWhiteSpace(txtContacto.Text))
+                {
+                    MessageBox.Show("Todos los campos son obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 clienteSeleccionado.Nombre = txtNombre.Text;
                 clienteSeleccionado.Direccion = txtDireccion.Text;
                 clienteSeleccionado.Contacto = txtContacto.Text;
 
-                ClienteController.Instance.EditarCliente(clienteSeleccionado);
-                CargarDatos(); // Recargar los datos después de editar
-                LimpiarCampos();
+                try
+                {
+                    ClienteController.Instance.EditarCliente(clienteSeleccionado);
+                    CargarDatos(); // Recargar los datos después de editar
+                    LimpiarCampos();
+                    MessageBox.Show("Cliente editado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al editar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Selecciona un cliente para editar.");
+                MessageBox.Show("Selecciona un cliente para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvClientes.SelectedRows.Count > 0)
             {
                 var clienteSeleccionado = (Cliente)dgvClientes.SelectedRows[0].DataBoundItem;
-                ClienteController.Instance.EliminarCliente(clienteSeleccionado.Codigo);
-                CargarDatos(); // Recargar los datos después de eliminar
-                LimpiarCampos();
+
+                var confirmResult = MessageBox.Show("¿Está seguro de eliminar este cliente?",
+                                                     "Confirmación",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        ClienteController.Instance.EliminarCliente(clienteSeleccionado.Codigo);
+                        CargarDatos(); // Recargar los datos después de eliminar
+                        LimpiarCampos();
+                        MessageBox.Show("Cliente eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al eliminar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("Selecciona un cliente para eliminar.");
+                MessageBox.Show("Selecciona un cliente para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
 
         #region AUXILIARES

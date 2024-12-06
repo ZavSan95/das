@@ -99,6 +99,8 @@ namespace Tienda.Views
 
             // Actualizar el total de la factura
             ActualizarTotal();
+            cmbProductos.SelectedIndex = -1;
+            txtCantidad.Text = string.Empty;
         }
 
 
@@ -128,6 +130,8 @@ namespace Tienda.Views
 
             // Llamar al controlador para crear la factura y agregar los detalles
             facturaController.CrearFactura(factura, dgvDetalles);
+
+            this.Close();
         }
 
 

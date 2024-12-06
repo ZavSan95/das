@@ -45,13 +45,50 @@ namespace Tienda.Views
         {
             try
             {
+                // Validación de los campos
+                if (string.IsNullOrWhiteSpace(txtNombre.Text))
+                {
+                    MessageBox.Show("El nombre del producto es obligatorio.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+                {
+                    MessageBox.Show("La descripción del producto es obligatoria.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
+                {
+                    MessageBox.Show("El precio debe ser un valor numérico positivo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(txtStock.Text, out int stock) || stock < 0)
+                {
+                    MessageBox.Show("El stock debe ser un valor numérico no negativo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cmbCategorias.SelectedValue == null)
+                {
+                    MessageBox.Show("Debe seleccionar una categoría.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cmbProveedores.SelectedValue == null)
+                {
+                    MessageBox.Show("Debe seleccionar un proveedor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Crear un nuevo producto a partir de los datos del formulario
                 var nuevoProducto = new Producto
                 {
                     Nombre = txtNombre.Text,
                     Descripcion = txtDescripcion.Text,
-                    Precio = decimal.Parse(txtPrecio.Text),
-                    Stock = int.Parse(txtStock.Text),
+                    Precio = precio,
+                    Stock = stock,
                     CategoriaCodigo = (int)cmbCategorias.SelectedValue,
                     ProveedorCodigo = (int)cmbProveedores.SelectedValue
                 };
@@ -73,14 +110,51 @@ namespace Tienda.Views
             {
                 if (dgvProductos.CurrentRow == null) throw new Exception("Seleccione un producto para editar.");
 
+                // Validación de los campos
+                if (string.IsNullOrWhiteSpace(txtNombre.Text))
+                {
+                    MessageBox.Show("El nombre del producto es obligatorio.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+                {
+                    MessageBox.Show("La descripción del producto es obligatoria.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
+                {
+                    MessageBox.Show("El precio debe ser un valor numérico positivo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(txtStock.Text, out int stock) || stock < 0)
+                {
+                    MessageBox.Show("El stock debe ser un valor numérico no negativo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cmbCategorias.SelectedValue == null)
+                {
+                    MessageBox.Show("Debe seleccionar una categoría.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cmbProveedores.SelectedValue == null)
+                {
+                    MessageBox.Show("Debe seleccionar un proveedor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var codigoProducto = Convert.ToInt32(dgvProductos.CurrentRow.Cells["Codigo"].Value);
 
                 var productoEditado = new Producto
                 {
                     Nombre = txtNombre.Text,
                     Descripcion = txtDescripcion.Text,
-                    Precio = decimal.Parse(txtPrecio.Text),
-                    Stock = int.Parse(txtStock.Text),
+                    Precio = precio,
+                    Stock = stock,
                     CategoriaCodigo = (int)cmbCategorias.SelectedValue,
                     ProveedorCodigo = (int)cmbProveedores.SelectedValue
                 };
@@ -122,6 +196,7 @@ namespace Tienda.Views
                 MessageBox.Show($"Error al eliminar el producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         #region AUXILIARES
 
